@@ -50,6 +50,15 @@ namespace TechJobs.ViewModels
                 });
             }
 
+            foreach (Location field in jobData.Locations.ToList())
+            {
+                Locations.Add(new SelectListItem
+                {
+                    Value = field.ID.ToString(),
+                    Text = field.Value
+                });
+            }
+
             foreach (CoreCompetency field in jobData.CoreCompetencies.ToList())
             {
                 CoreCompetencies.Add(new SelectListItem
