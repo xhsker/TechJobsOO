@@ -21,16 +21,10 @@ namespace TechJobs.Controllers
         // The detail display for a given Job at URLs like /Job?id=17
         public IActionResult Index(int id)
         {
-            Job theJob = jobData.Find(id);
-            NewJobViewModel theRealJob = new NewJobViewModel();
+            Job result = jobData.Find(id);
 
-            theRealJob.Name = theJob.Name;
-            theRealJob.EmployerID = theJob.Employer.ID;
-            theRealJob.CoreCompetencyID = theJob.CoreCompetency.ID;
-            theRealJob.LocationID = theJob.Location.ID;
-            theRealJob.PositionTypeID = theJob.PositionType.ID;
 
-            return View();
+            return View(result);
         }
 
         public IActionResult New()
@@ -58,7 +52,7 @@ namespace TechJobs.Controllers
                 };
 
                 jobData.Jobs.Add(newJob);
-                return Redirect(string.Format("/job?id={0}", newJob.ID));
+                return Redirect(string.Format("Index/?id={0}", newJob.ID));
             }
 
             return View(newJobViewModel);
